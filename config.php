@@ -3,8 +3,8 @@
     $server = "localhost";
     $username = "root";
     $password = "";
-    $database = "db_uts";
+    $database = "";
 
-    $conn = mysqli_connect($server, $username, $password, $database);
+    $conn = mysqli_connect($server, $username, $password, $database) or die ("Connection failed: " . mysqli_connect_error());
 ?>
 
