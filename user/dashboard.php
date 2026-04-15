@@ -41,7 +41,7 @@ $result = mysqli_query($conn, $sql);
                     <a href="add.php?id=<?= $id;?>" class="btn">Pinjam Uang</a>
                 </div>
 
-                <h3>Daftar Karyawan</h3>
+                <h3>Daftar Peminjaman</h3>
                 <br>
                 <table id="dataTable">
                     <thead>

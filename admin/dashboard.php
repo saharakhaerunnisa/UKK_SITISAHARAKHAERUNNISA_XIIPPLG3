@@ -65,7 +65,7 @@ $result = mysqli_query($conn, $sql);
                             <td><?= htmlspecialchars($row['jabatan'])?></td>
                             <td>Rp<?= number_format($row['gaji'], 0, ',', '.') ?></td>
                             <td>
-                                <a href="edit.php?id=<?= $row['id']; ?>" class="edit-btn">Edit</a>
+                                <a href="karyawan/edit.php?id=<?= $row['id']; ?>" class="edit-btn">Edit</a>
                                 <a href="dashboard.php?delete=<?= $row['id']; ?>" class="delete-btn" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
                         </tr>
                         <?php

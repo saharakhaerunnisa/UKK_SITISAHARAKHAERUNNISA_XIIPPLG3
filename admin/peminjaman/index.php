@@ -52,7 +52,7 @@ $result = mysqli_query($conn, $sql);
                     <input type="text" id="searchInput" class="search-input" placeholder="Cari data di tabel..." onkeyup="searchTable()">
                 </div>
 
-                <h3>Daftar Karyawan</h3>
+                <h3>Daftar Peminjaman</h3>
                 <br>
                 <table id="dataTable">
                     <thead>
