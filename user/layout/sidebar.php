@@ -8,15 +8,12 @@
 </head>
 <body>
     <?php
-        $url = "http://localhost:8080/UKK_SITISAHARAKH_XIIPPLG3/admin/"
+        $url = "http://localhost/UKK_SITISAHARAKH_XIIPPLG3/user/"
     ?>
     <div class="sidebar">
         <h2>AdminPanel</h2>
         <nav>
             <a href="<?= $url;?>dashboard.php">Dashboard</a>
-            <a href="<?= $url;?>peminjaman/index.php">Pinjaman</a>
-            <a href="<?= $url;?>gaji/index.php">Slip Gaji</a>
-            <a href="<?= $url;?>">Laporan</a>
             <a href="<?= $url;?>">Pengaturan</a>
         </nav>
     </div>

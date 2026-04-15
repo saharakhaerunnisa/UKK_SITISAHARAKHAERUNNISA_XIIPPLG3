@@ -1,17 +1,14 @@
 <?php
-include '../config.php';
-
+include '../../config.php';
 session_start();
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 'karyawan') {
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 'admin') {
     header("Location: ../index.php");
     exit();
 }
 
-$user = $_SESSION['username'];
 
-$id = "SELECT id FROM user WHERE username='$user'";
 
-$sql = "SELECT * FROM peminjaman";
+$sql = "SELECT * FROM slip_gaji";
 $result = mysqli_query($conn, $sql);
 ?>
 
@@ -22,15 +19,16 @@ $result = mysqli_query($conn, $sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard Admin</title>
-    <link rel="stylesheet" href="../css/dashboard.css">
-    <link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="stylesheet" href="../../css/dashboard.css">
+    <link rel="stylesheet" href="../../css/sidebar.css">
+
 </head>
 <body>
-    <?php include 'layout/sidebar.php'; ?>
+    <?php include '../layout/sidebar.php'; ?>
     <div class="main-content">
         <div class="navbar">
             <h3>Ringkasan Data</h3>
-            <div class="user-info">Halo, <?= htmlspecialchars($user) ?></div>
+            <div class="user-info">Halo, Admin</div>
             <a href="../index.php" class="logout">Logout</a>
         </div>
 
@@ -38,7 +36,10 @@ $result = mysqli_query($conn, $sql);
             <div class="card">
                 <div class="search-container">
                     <input type="text" id="searchInput" class="search-input" placeholder="Cari data di tabel..." onkeyup="searchTable()">
-                    <a href="add.php?id=<?= $id;?>" class="btn">Pinjam Uang</a>
+                    <a href="add.php" class="btn">Tambah Data</a>
+                    <a href="export_excel.php" class="btn-export" style="padding: 10px 15px; background: #2e7d32; color: white; text-decoration: none; border-radius: 5px;">
+                        📥 Export ke Excel
+                    </a>
                 </div>
 
                 <h3>Daftar Karyawan</h3>
@@ -48,10 +49,10 @@ $result = mysqli_query($conn, $sql);
                         <tr>
                             <th>ID</th>
                             <th>ID Karyawan</th>
-                            <th>Total Pinjaman</th>
+                            <th>ID Peminjaman</th>
+                            <th>Lembur</th>
                             <th>Tanggal</th>
-                            <th>Lama Pinjam</th>
-                            <th>Status</th>
+                            <th>Total Gaji</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -62,10 +63,10 @@ $result = mysqli_query($conn, $sql);
                         <tr>
                             <td><?= htmlspecialchars($row['id'])?></td>
                             <td><?= htmlspecialchars($row['idk'])?></td>
-                            <td>Rp <?= number_format($row['pinjaman'], 0, ',', '.') ?></td>
+                            <td><?= $row['idp'] ?? 'Tidak Ada Peminjaman'?></td>
+                            <td>Rp<?= number_format($row['lembur'], 0, ',', '.') ?></td>
                             <td><?= htmlspecialchars($row['tanggal'])?></td>
-                            <td><?= htmlspecialchars($row['lama'])?></td>
-                            <td><?= htmlspecialchars($row['status'])?></td>
+                            <td>Rp<?= number_format($row['total'], 0, ',', '.') ?></td>
                         </tr>
                         <?php
                                 endwhile;
